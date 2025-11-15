@@ -1,27 +1,31 @@
 import React from "react";
+import { CiStar } from "react-icons/ci";
+import { Link } from "react-router";
 
-const ToyItem = () => {
+const ToyItem = ({ toy }) => {
+  const { toyName, pictureURL, description, price, availableQuantity, rating } =
+    toy;
+  console.log(toy);
   return (
     <div>
       <div className="card bg-base-100 w-96 shadow-sm">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
+          <img src={pictureURL} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
-            Card Title
-            <div className="badge badge-secondary">NEW</div>
+          <h2 className="card-title flex justify-between">
+            {toyName}
+            <div className="badge badge-secondary">{price}</div>
           </h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
+          <p>{description}</p>
+          <div className="card-actions justify-between">
+            <div className="badge badge-outline">{availableQuantity} Left</div>
+            <div className="badge badge-outline">
+              <CiStar /> {rating}
+            </div>
+          </div>
+          <div>
+            <Link className="btn btn-block bg-transparent hover:bg-secondary hover:text-white">View More</Link>
           </div>
         </div>
       </div>
