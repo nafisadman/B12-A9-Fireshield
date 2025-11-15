@@ -3,7 +3,7 @@ import { CiStar } from "react-icons/ci";
 import { Link } from "react-router";
 
 const ToyItem = ({ toy }) => {
-  const { toyName, pictureURL, description, price, availableQuantity, rating } =
+  const { toyId, toyName, pictureURL, description, price, availableQuantity, rating } =
     toy;
   console.log(toy);
   return (
@@ -25,7 +25,12 @@ const ToyItem = ({ toy }) => {
             </div>
           </div>
           <div>
-            <Link className="btn btn-block bg-transparent hover:bg-secondary hover:text-white">View More</Link>
+            <Link
+              to={`/toy-details/${toyId}`}
+              className="btn btn-block bg-transparent hover:bg-secondary hover:text-white"
+            >
+              View More
+            </Link>
           </div>
         </div>
       </div>

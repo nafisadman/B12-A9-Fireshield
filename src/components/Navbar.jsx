@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center">
       {/* Navbar Left Part */}
-      <div className="text-4xl font-bold">ToyTopia</div>
+      <div className="text-4xl font-bold">🧸 Toy<span className="text-secondary">Topia</span></div>
       
       {/* Navbar Middle Part */}
       <div className="nav flex gap-5 text-accent">

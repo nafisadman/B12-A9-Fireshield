@@ -9,6 +9,7 @@ import NewsDetails from "../pages/NewsDetails";
 import PrivateRoute from "../provider/PrivateRoute";
 import Loading from "../pages/Loading";
 import ToyStore from "../components/homelayout/ToyStore";
+import ToyDetails from "../pages/ToyDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         path: "/toys/",
         element: <ToyStore></ToyStore>,
         loader: () => fetch("/toys.json"),
-      }
+      },
     ],
   },
   {
@@ -54,6 +55,16 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: () => fetch("/news.json"),
+    hydrateFallbackElement: <Loading></Loading>
+  },
+  {
+    path: "/toy-details/:id",
+    element: (
+      <PrivateRoute>
+        <ToyDetails></ToyDetails>
+      </PrivateRoute>
+    ),
+    loader: () => fetch("/toys.json"),
     hydrateFallbackElement: <Loading></Loading>
   },
   {
