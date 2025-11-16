@@ -1,10 +1,12 @@
 import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import SocialLogin from "../components/homelayout/SocialLogin";
 
 const Register = () => {
   const { createUser, setUser, updateUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -21,7 +23,23 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log({ name, photo, email, password });
+    console.log({ name, photo, email, password });
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasMinLength = password.length >= 6;
+
+    if (!hasUppercase) {
+      setPasswordError("Password must contain at least one uppercase letter.");
+      return;
+    } else if (!hasLowercase) {
+      setPasswordError("Password must contain at least one lowercase letter.");
+      return;
+    } else if (!hasMinLength) {
+      setPasswordError("Password must be at least 6 characters long.");
+      return;
+    } else {
+      setPasswordError("");
+    }
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -59,7 +77,7 @@ const Register = () => {
             <input
               type="text"
               name="name"
-              className="input"
+              className="input w-full"
               placeholder="Enter your name"
               required
             />
@@ -69,7 +87,7 @@ const Register = () => {
             <input
               type="text"
               name="photo"
-              className="input"
+              className="input w-full"
               placeholder="Enter your photo URL"
               required
             />
@@ -78,7 +96,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              className="input"
+              className="input w-full"
               placeholder="Email"
               required
             />
@@ -87,14 +105,13 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              className="input"
+              className="input w-full"
               placeholder="Password"
               required
             />
-            <div>
-              <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button type="submit" className="btn btn-neutral mt-4">
+            {passwordError && <p className="text-xs text-error">{passwordError}</p>}
+            <SocialLogin></SocialLogin>
+            <button type="submit" className="btn btn-neutral">
               Register
             </button>
             <p className="font-semibold text-center pt-5">

@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const SocialLogin = () => {
-    return (
-        <div>
-            <h2 className='font-bold mb-5'>Login with</h2>
-            <div className='flex flex-col gap-3'>
-                <button className='btn btn-outline btn-secondary'><FcGoogle size={24}/>Login with Google</button>
-                <button className='btn btn-outline btn-primary'><FaGithub size={24}/>Login with GitHub</button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex flex-col mt-4">
+      <button className="btn btn-outline btn-secondary">
+        <FcGoogle size={24} />
+        Continue with Google
+      </button>
+    </div>
+  );
 };
 
 export default SocialLogin;

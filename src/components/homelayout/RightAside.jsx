@@ -7,9 +7,9 @@ import Qzone from './Qzone';
 const RightAside = () => {
     return (
         <div className='space-y-8'>
-            {/* <SocialLogin></SocialLogin>
-            <FindUs></FindUs>
-            <Qzone></Qzone> */}
+            {/* <SocialLogin></SocialLogin> */}
+            {/* <FindUs></FindUs> */}
+            <Qzone></Qzone>
             {/* <Popular></Popular> */}
         </div>
     );

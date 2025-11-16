@@ -3,7 +3,7 @@ import React from "react";
 const Slider = () => {
   return (
     <div>
-      <div className="carousel w-full h-96 object-cover">
+      <div className="carousel w-full h-96 object-cover items-center">
         <div id="item1" className="carousel-item w-full">
           <img
             src="https://i.ibb.co.com/TxCxbYDn/1.jpg"

@@ -8,7 +8,7 @@ const ToyItem = ({ toy }) => {
   console.log(toy);
   return (
     <div>
-      <div className="card bg-base-100 w-96 shadow-sm">
+      <div className="card bg-base-100 min-w-96 shadow-sm m-5">
         <figure>
           <img src={pictureURL} alt="Shoes" />
         </figure>

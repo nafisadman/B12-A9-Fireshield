@@ -10,6 +10,9 @@ import PrivateRoute from "../provider/PrivateRoute";
 import Loading from "../pages/Loading";
 import ToyStore from "../components/homelayout/ToyStore";
 import ToyDetails from "../pages/ToyDetails";
+import SalesLayout from "../layouts/SalesLayout";
+import ErrorLayout from "../layouts/ErrorLayout";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +27,13 @@ const router = createBrowserRouter([
         path: "/category/:id",
         element: <CategoryNews></CategoryNews>,
         loader: () => fetch("/news.json"),
-        hydrateFallbackElement: <Loading></Loading>
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/toys/",
         element: <ToyStore></ToyStore>,
         loader: () => fetch("/toys.json"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },
@@ -48,6 +52,22 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/about",
+    element: (
+      <PrivateRoute>
+        <SalesLayout></SalesLayout>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoute>
+        <Profile></Profile>
+      </PrivateRoute>
+    )
+  },
+  {
     path: "/news-details/:id",
     element: (
       <PrivateRoute>
@@ -55,7 +75,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: () => fetch("/news.json"),
-    hydrateFallbackElement: <Loading></Loading>
+    hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: "/toy-details/:id",
@@ -65,11 +85,11 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: () => fetch("/toys.json"),
-    hydrateFallbackElement: <Loading></Loading>
+    hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: "/*",
-    element: <h2>Error 404 Layout</h2>,
+    element: <ErrorLayout></ErrorLayout>,
   },
 ]);
 
