@@ -2,11 +2,13 @@ import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/homelayout/SocialLogin";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
   const { createUser, setUser, updateUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -61,6 +63,11 @@ const Register = () => {
       });
   };
 
+  const handleTogglePasswordShow = (event) => {
+    event.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="flex justify-center min-h-screen items-center">
       <form
@@ -102,15 +109,22 @@ const Register = () => {
             />
             {/* password */}
             <label className="label">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="input w-full"
-              placeholder="Password"
-              required
-            />
-            {passwordError && <p className="text-xs text-error">{passwordError}</p>}
-            <SocialLogin></SocialLogin>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                className="input w-full"
+                placeholder="Password"
+                required
+              />
+              {passwordError && (
+                <p className="text-xs text-error">{passwordError}</p>
+              )}
+              <SocialLogin></SocialLogin>
+              <button className="absolute top-2 right-2 btn btn-xs" onClick={handleTogglePasswordShow}>
+                {showPassword ? <IoEyeOff /> : <IoEye />}
+              </button>
+            </div>
             <button type="submit" className="btn btn-neutral">
               Register
             </button>
