@@ -8,6 +8,7 @@ const Login = () => {
   const { signIn } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [emailInput, setEmailInput] = useState("");
   // console.log(location);
 
   const handleLogin = (e) => {
@@ -45,6 +46,7 @@ const Login = () => {
               className="input w-full"
               placeholder="Email"
               required
+              onChange={(e) => setEmailInput(e.target.value)}
             />
             {/* Password */}
             <label className="label">Password</label>
@@ -56,7 +58,7 @@ const Login = () => {
               required
             />
             <div>
-              <a className="link link-hover">Forgot password?</a>
+              <Link to="/auth/forgot-password" state={{ email: emailInput }} className="link link-hover">Forgot password?</Link>
             </div>
             {error && <p className="text-red-400 text-xs">{error}</p>}
             <SocialLogin></SocialLogin>
