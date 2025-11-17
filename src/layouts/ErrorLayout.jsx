@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ErrorLayout = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | Error 404";
+  }, []);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
@@ -13,12 +16,15 @@ const ErrorLayout = () => {
               Page Not Found
             </h2>
             <p className="py-6 text-lg text-gray-600 dark:text-gray-300">
-              Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+              Oops! The page you are looking for might have been removed, had
+              its name changed, or is temporarily unavailable.
             </p>
-            <a href="/" className="btn btn-primary mt-4 text-white bg-blue-600 hover:bg-blue-700 border-none transition duration-300">
+            <a
+              href="/"
+              className="btn btn-primary mt-4 text-white bg-blue-600 hover:bg-blue-700 border-none transition duration-300"
+            >
               Go to Homepage
             </a>
-            
           </div>
         </div>
       </div>

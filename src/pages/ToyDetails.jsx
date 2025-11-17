@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLoaderData, useNavigation, useParams } from "react-router";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
@@ -8,11 +8,14 @@ import Footer from "../components/Footer";
 import ToyDetailsCard from "../components/ToyDetailsCard";
 
 const ToyDetails = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | Toy Details";
+  }, []);
   const data = useLoaderData();
   const { id } = useParams();
   console.log(id);
-  const toyDetails = data.find(singleToy=>singleToy.toyId == id);
-  console.log('data: ', toyDetails);
+  const toyDetails = data.find((singleToy) => singleToy.toyId == id);
+  console.log("data: ", toyDetails);
   return (
     <div>
       <header>

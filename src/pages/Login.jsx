@@ -1,9 +1,13 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/homelayout/SocialLogin";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | Login";
+  }, []);
   const [error, setError] = useState("");
   const { signIn } = use(AuthContext);
   const location = useLocation();
@@ -21,7 +25,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         // console.log(user);
-        navigate(`${location.state ? location.state : "/"}`)
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -32,6 +36,9 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center min-h-screen items-center">
+      <Helmet>
+        <title>ToyTopia | Login</title>
+      </Helmet>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
         <h2 className="font-semibold text-2xl text-center">
           Login your account
@@ -58,7 +65,13 @@ const Login = () => {
               required
             />
             <div>
-              <Link to="/auth/forgot-password" state={{ email: emailInput }} className="link link-hover">Forgot password?</Link>
+              <Link
+                to="/auth/forgot-password"
+                state={{ email: emailInput }}
+                className="link link-hover"
+              >
+                Forgot password?
+              </Link>
             </div>
             {error && <p className="text-red-400 text-xs">{error}</p>}
             <SocialLogin></SocialLogin>

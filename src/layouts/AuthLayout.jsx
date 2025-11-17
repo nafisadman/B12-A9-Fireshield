@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 
 const AuthLayout = () => {
   return (

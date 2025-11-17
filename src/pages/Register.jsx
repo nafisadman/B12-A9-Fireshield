@@ -1,10 +1,14 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/homelayout/SocialLogin";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | register";
+  }, []);
   const { createUser, setUser, updateUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -70,6 +74,9 @@ const Register = () => {
 
   return (
     <div className="flex justify-center min-h-screen items-center">
+      <Helmet>
+        <title>ToyTopia | Register</title>
+      </Helmet>
       <form
         onSubmit={handleRegister}
         className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5"
@@ -121,7 +128,10 @@ const Register = () => {
                 <p className="text-xs text-error">{passwordError}</p>
               )}
               <SocialLogin></SocialLogin>
-              <button className="absolute top-2 right-2 btn btn-xs" onClick={handleTogglePasswordShow}>
+              <button
+                className="absolute top-2 right-2 btn btn-xs"
+                onClick={handleTogglePasswordShow}
+              >
                 {showPassword ? <IoEyeOff /> : <IoEye />}
               </button>
             </div>

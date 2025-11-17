@@ -1,8 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 const SalesLayout = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | About";
+  }, []);
   return (
     <div>
       {/* Navbar */}
@@ -25,7 +29,7 @@ const SalesLayout = () => {
           <div className="hero-overlay"></div>
           <div className="hero-content text-neutral-content text-center">
             <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold">✨ Welcome to ToyTopia! 🎉</h1>
+              <h1 className="mb-5 text-5xl font-bold">✨ Welcome to ToyTopia!! 🎉</h1>
               <p className="mb-5">
                 Discover the <span className="font-bold">most amazing toys</span> for every adventurer, builder, and dreamer! 
                 From cuddly creatures to awesome action figures, your next <span className="font-bold">playtime adventure</span> starts right here. Let the fun begin!

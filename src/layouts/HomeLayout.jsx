@@ -33,7 +33,7 @@ const HomeLayout = () => {
           </aside>
         </div>
         <div>
-            <Subscribe></Subscribe>
+          <Subscribe></Subscribe>
         </div>
       </main>
 

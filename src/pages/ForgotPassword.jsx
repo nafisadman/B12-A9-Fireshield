@@ -1,14 +1,21 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useLocation } from "react-router";
+import { Helmet } from "react-helmet";
 
 const ForgotPassword = () => {
+  useEffect(() => {
+    document.title = "ToyTopia | Forgot Pass";
+  }, []);
   const { user } = use(AuthContext);
   const location = useLocation();
   const email = location.state?.email || "";
-//   console.log(user.email);
+  //   console.log(user.email);
   return (
     <div>
+      <Helmet>
+        <title>ToyTopia | Forgot Password</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -21,8 +28,19 @@ const ForgotPassword = () => {
             <div className="card-body">
               <fieldset className="fieldset">
                 <label className="label">Email</label>
-                <input type="email" className="input w-full" defaultValue={email} placeholder="Email"/>
-                <a className="btn btn-neutral mt-4" href="https://mail.google.com/" target="_blank">Reset Password</a>
+                <input
+                  type="email"
+                  className="input w-full"
+                  defaultValue={email}
+                  placeholder="Email"
+                />
+                <a
+                  className="btn btn-neutral mt-4"
+                  href="https://mail.google.com/"
+                  target="_blank"
+                >
+                  Reset Password
+                </a>
               </fieldset>
             </div>
           </div>
