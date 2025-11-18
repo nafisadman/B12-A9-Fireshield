@@ -6,6 +6,7 @@ import Loading from "./Loading";
 import RightAside from "../components/homelayout/RightAside";
 import Footer from "../components/Footer";
 import ToyDetailsCard from "../components/ToyDetailsCard";
+import { ToastContainer, toast } from "react-toastify";
 
 const ToyDetails = () => {
   useEffect(() => {

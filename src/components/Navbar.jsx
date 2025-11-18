@@ -1,6 +1,5 @@
 import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
-import userIcon from "../assets/user.png";
 import { AuthContext } from "../provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 

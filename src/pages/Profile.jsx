@@ -2,7 +2,6 @@ import React, { use, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
-import { Helmet } from "react-helmet";
 
 const Profile = () => {
   useEffect(() => {

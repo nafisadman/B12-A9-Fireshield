@@ -2,43 +2,48 @@ import React, { use, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/homelayout/SocialLogin";
-import { Helmet } from "react-helmet";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   useEffect(() => {
     document.title = "ToyTopia | Login";
   }, []);
   const [error, setError] = useState("");
-  const { signIn } = use(AuthContext);
+  const { signIn, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
-  // console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log({ email, password });
+
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;
-        // alert(errorMessage);
         setError(errorCode);
       });
   };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex justify-center min-h-screen items-center">
-      <Helmet>
-        <title>ToyTopia | Login</title>
-      </Helmet>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
         <h2 className="font-semibold text-2xl text-center">
           Login your account
@@ -52,7 +57,6 @@ const Login = () => {
               type="email"
               className="input w-full"
               placeholder="Email"
-              required
               onChange={(e) => setEmailInput(e.target.value)}
             />
             {/* Password */}
@@ -62,7 +66,6 @@ const Login = () => {
               type="password"
               className="input w-full"
               placeholder="Password"
-              required
             />
             <div>
               <Link
@@ -74,7 +77,15 @@ const Login = () => {
               </Link>
             </div>
             {error && <p className="text-red-400 text-xs">{error}</p>}
-            <SocialLogin></SocialLogin>
+            <div className="flex flex-col mt-4">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline btn-secondary"
+              >
+                <FcGoogle size={24} />
+                Continue with Google
+              </button>
+            </div>
             <button type="submit" className="btn btn-neutral">
               Login
             </button>

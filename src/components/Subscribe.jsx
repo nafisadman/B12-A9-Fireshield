@@ -1,6 +1,13 @@
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Subscribe = () => {
+  const notify = () => toast("Subscribed Successfully!");
+
+  const handleSubscribe = () => {
+    notify();
+  }
+  
   return (
     <div className="hero bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -14,7 +21,8 @@ const Subscribe = () => {
           <div className="card-body">
             <fieldset className="fieldset">
               <input type="email" className="input" placeholder="Enter your Email" />
-              <button className="btn btn-neutral mt-4">Subscribe</button>
+              <button onClick={handleSubscribe} className="btn btn-neutral mt-4">Subscribe</button>
+              <ToastContainer />
             </fieldset>
           </div>
         </div>

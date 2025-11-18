@@ -1,6 +1,4 @@
 import React from 'react';
-import SocialLogin from './SocialLogin';
-import FindUs from './FindUs';
 import Qzone from './Qzone';
 // import Popular from './Popular';
 
