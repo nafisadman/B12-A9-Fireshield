@@ -9,6 +9,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  sendPasswordResetEmail
 } from "firebase/auth";
 
 export const AuthContext = createContext();
@@ -45,6 +46,10 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -65,6 +70,7 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     updateUser,
+    resetPassword
   };
   
   return <AuthContext value={authData}>{children}</AuthContext>;

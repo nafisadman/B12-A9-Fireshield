@@ -1,21 +1,39 @@
 import React, { use, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useLocation } from "react-router";
-import { Helmet } from "react-helmet";
+import { ToastContainer, toast } from "react-toastify";
 
 const ForgotPassword = () => {
   useEffect(() => {
     document.title = "ToyTopia | Forgot Pass";
   }, []);
-  const { user } = use(AuthContext);
+
+  const notify = () => toast("Email Link has been sent. Check your Spambox");
+
+  const { user, resetPassword } = use(AuthContext);
+
   const location = useLocation();
   const email = location.state?.email || "";
-  //   console.log(user.email);
+
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+
+    resetPassword(email)
+      .then((result) => {
+        console.log(result);
+        notify();
+        window.open('https://mail.google.com/mail/u/0/#spam/', '_blank');
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
   return (
     <div>
-      <Helmet>
-        <title>ToyTopia | Forgot Password</title>
-      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -25,7 +43,7 @@ const ForgotPassword = () => {
             </p>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
+            <form className="card-body" onSubmit={handleForgotPassword}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
                 <input
@@ -33,16 +51,12 @@ const ForgotPassword = () => {
                   className="input w-full"
                   defaultValue={email}
                   placeholder="Email"
+                  name="email"
                 />
-                <a
-                  className="btn btn-neutral mt-4"
-                  href="https://mail.google.com/"
-                  target="_blank"
-                >
-                  Reset Password
-                </a>
+                <button className="btn btn-secondary mt-4" type="submit">Reset Password</button>
+                <ToastContainer />
               </fieldset>
-            </div>
+            </form>
           </div>
         </div>
       </div>

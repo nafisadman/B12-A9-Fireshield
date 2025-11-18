@@ -9,6 +9,7 @@ const Register = () => {
   useEffect(() => {
     document.title = "ToyTopia | register";
   }, []);
+  
   const { createUser, setUser, updateUser, signInWithGoogle } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
