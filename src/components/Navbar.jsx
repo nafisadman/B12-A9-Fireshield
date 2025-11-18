@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
+import userIcon from "../assets/user.png";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
@@ -40,7 +41,7 @@ const Navbar = () => {
           >
             {hover && <div className="flex">{user && user.email}</div>}
             <img
-              className="w-12 rounded-full"
+              className="w-12 rounded-full border"
               src={`${user ? user.photoURL : userIcon}`}
               alt=""
             />

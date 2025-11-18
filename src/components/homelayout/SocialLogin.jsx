@@ -1,10 +1,10 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
-const SocialLogin = () => {
+const SocialLogin = ({handleContinueWithGoogle}) => {
   return (
     <div className="flex flex-col mt-4">
-      <button className="btn btn-outline btn-secondary">
+      <button onClick={handleContinueWithGoogle} className="btn btn-outline btn-secondary">
         <FcGoogle size={24} />
         Continue with Google
       </button>

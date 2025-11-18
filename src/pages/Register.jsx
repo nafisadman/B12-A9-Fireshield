@@ -9,7 +9,7 @@ const Register = () => {
   useEffect(() => {
     document.title = "ToyTopia | register";
   }, []);
-  const { createUser, setUser, updateUser } = use(AuthContext);
+  const { createUser, setUser, updateUser, signInWithGoogle } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState("");
@@ -66,6 +66,17 @@ const Register = () => {
         alert(errorCode, errorMessage);
       });
   };
+
+  const handleContinueWithGoogle = () => {
+    signInWithGoogle()
+    .then(result => {
+      console.log(result.user);
+      navigate("/");
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
 
   const handleTogglePasswordShow = (event) => {
     event.preventDefault();
@@ -127,7 +138,7 @@ const Register = () => {
               {passwordError && (
                 <p className="text-xs text-error">{passwordError}</p>
               )}
-              <SocialLogin></SocialLogin>
+              <SocialLogin handleContinueWithGoogle={handleContinueWithGoogle}></SocialLogin>
               <button
                 className="absolute top-2 right-2 btn btn-xs"
                 onClick={handleTogglePasswordShow}
