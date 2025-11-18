@@ -82,7 +82,7 @@ const Navbar = () => {
           <div className="login-btn flex gap-5">
             {user && (
               <div
-                className="flex items-center"
+                className="flex items-center hidden sm:block"
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
               >
